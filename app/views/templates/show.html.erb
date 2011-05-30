@@ -16,7 +16,7 @@
 </p>
 
 <% unless @template.nil? %>
-	<% for @template.exercises.each do |exercise| %>
+	<% for @template.exercises do |exercise| %>
 		<%= "Exercise:  "  %>
 		<%= exercise.name  %>
 	<% end %>
