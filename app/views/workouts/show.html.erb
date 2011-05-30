@@ -14,7 +14,7 @@
 <% @exercises = @workout.exercises %>
 <% @exercises.each do |exercise| %>
   <p>
-    <% unless exercise.name.nil?  %>
+    <% unless exercise.name==""  %>
     <%= "Exercise:   " %>
      <%= exercise.name %><br />
      <%= "Reps:  " %>
@@ -25,4 +25,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_workout_path(@workout) %> |
+<%= link_to 'Edit', edit_workout_path(@workout) %>
