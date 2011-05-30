@@ -3,8 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Description</th>
-    <th>User</th>
+    <th>Comments</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,7 +14,7 @@
     <td><%= template.name %></td>
     <td><%= template.description %></td>
     <td><%= template.user_id %></td>
-    <td><%= link_to 'Show', template_path(template) %></td>
+    <td><%= link_to 'View', template_path(template) %></td>
     <td><%= link_to 'Edit', edit_template_path(template) %></td>
     <!--td><%= link_to 'Destroy', template, :confirm => 'Are you sure?', :controller => "template", :method => :delete %></td-->
   </tr>
@@ -24,4 +23,4 @@
 
 <br />
 
-<%= link_to 'New Template', new_template_path %>
+<%= link_to 'New Named Workout', new_template_path %>
