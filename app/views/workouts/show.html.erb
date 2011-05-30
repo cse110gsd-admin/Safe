@@ -21,7 +21,7 @@
         <%= "Reps:  " %>
         <%= exercise.reps %><br />
       <% end %>
-      <% if exercise.weight=="121" %>
+      <% unless exercise.weight=="" %>
         <%= "Weight:  "  %>
         <%= exercise.weight %><br />
       <% end %>
