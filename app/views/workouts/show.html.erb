@@ -13,12 +13,15 @@
 
 <% @exercises = @workout.exercises %>
 <% @exercises.each do |exercise| %>
-  <p><%= "Exercise:   " %>
+  <p>
+    <% unless exercise.name==nil?  %>
+    <%= "Exercise:   " %>
      <%= exercise.name %><br />
      <%= "Reps:  " %>
      <%= exercise.reps %><br />
      <%= "Weight:  "  %>
      <%= exercise.weight %><br />
+    <% end %>
   </p>
 <% end %>
 
