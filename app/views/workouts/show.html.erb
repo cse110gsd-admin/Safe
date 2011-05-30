@@ -6,31 +6,19 @@
 </p>
 
 <p>
-  <b>Description:</b>
+  <b>Comments:</b>
   <%= @workout.description %>
-</p>
-
-<p>
-  <b>Template:</b>
-  <%= @workout.template_id %>
-</p>
-
-<p>
-  <b>Workout_id:</b>
-  <%= @workout.id %>
-</p>
-
-<p>
-  <b>Event:</b>
-  <%= @workout.event_id %>
 </p>
 
 
 <% @exercises = @workout.exercises %>
-<% @exercises.each do |@exercise| %>
-  <p><%= @exercise.name %><br />
-     <%= @exercise.reps %><br />
-     <%= @exercise.weight %><br />
+<% @exercises.each do |exercise| %>
+  <p><%= "Exercise:   " %>
+     <%= exercise.name %><br />
+     <%= "Reps:  " %>
+     <%= exercise.reps %><br />
+     <%= "Weight:  "  %>
+     <%= exercise.weight %><br />
   </p>
 <% end %>
 
