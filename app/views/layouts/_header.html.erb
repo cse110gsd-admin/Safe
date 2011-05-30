@@ -18,7 +18,10 @@ function MM_findObj(n, d) { //v4.01
   if(!x && d.getElementById) x=d.getElementById(n); return x;
 }
  
-
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
 //-->
 </script>
   <img src="/images/logo.png" name="menu" width="300" height="233" border="0">
@@ -28,6 +31,7 @@ function MM_findObj(n, d) { //v4.01
       <li><%= link_to "Home", root_path %></li>
       <% if signed_in? %>
       <li><%= link_to "Calendar", calendar_index_path %></li>
+      <li><%= link_to "Named Workouts", template_index_path %></li>
       <li><%= link_to "Account Management", edit_user_path(current_user) %></li>
       <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
       <% else %>
