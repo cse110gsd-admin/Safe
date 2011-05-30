@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @template.name %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%= @template.description %>
+</p>
+
+
+<p>
+<% @exercises = @template.exercises %>
+<% @exercises.each do |exercise| %>
+  <p><%= "Exercise:   " %>
+     <%= exercise.name %><br />
+     <%= "Reps:  " %>
+     <%= exercise.reps %><br />
+     <%= "Weight:  "  %>
+     <%= exercise.weight %><br />
+  </p>
+<% end %>
+</p>
+
+<%= link_to 'Edit', edit_template_path(@template) %>
