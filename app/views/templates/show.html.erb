@@ -15,6 +15,14 @@
   <%= @template.user_id %>
 </p>
 
+<% unless @template.nil? %>
+	<% for @template.exercises.each do |exercise| %>
+		<%= "Exercise:  "  %>
+		<%= exercise.name  %>
+	<% end %>
+<% end %>
+
+
 
 <%= link_to 'Edit', edit_template_path(@template) %> |
 <%= link_to 'Back', templates_path %>
