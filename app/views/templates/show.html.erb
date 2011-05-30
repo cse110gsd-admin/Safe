@@ -10,15 +10,8 @@
   <%= @template.description %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @template.user_id %>
-</p>
 
 <p>
-
-
-
 <% @exercises = @template.exercises %>
 <% @exercises.each do |exercise| %>
   <p><%= "Exercise:   " %>
@@ -29,7 +22,7 @@
      <%= exercise.weight %><br />
   </p>
 <% end %>
-
+</p>
 
 <%= link_to 'Edit', edit_template_path(@template) %> |
 <%= link_to 'Back', templates_path %>
