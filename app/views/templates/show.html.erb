@@ -21,7 +21,9 @@
 
 <% @exercises = @template.exercises %>
 <% @exercises.each do |exercise| %>
-  <p><%= exercise.name %><br />
+  <p><%= "Exercise:   " %>
+     <%= exercise.name %><br />
+     <%= "Reps:  " %>
      <%= exercise.reps %><br />
      <%= exercise.weight %><br />
   </p>
