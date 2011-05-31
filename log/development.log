@@ -3729,3 +3729,455 @@ Started GET "/events?start=1304233200&end=1307862000&_=1306865323110" for 127.0.
   [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
   [1m[35mEvent Load (0.4ms)[0m  SELECT "events".* FROM "events" WHERE "events"."user_id" = 1
 Completed 200 OK in 91ms (Views: 12.0ms | ActiveRecord: 0.5ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /home/wjholl/Documents/rails_projects/Safe/config/routes.rb:1)
+
+
+Started GET "/events/new" for 127.0.0.1 at Tue May 31 11:10:17 -0700 2011
+  Processing by EventsController#new as HTML
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered events/_form.html.erb (7.1ms)
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_header.html.erb (1.8ms)
+Rendered layouts/_footer.html.erb (0.8ms)
+Rendered events/new.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 140ms (Views: 22.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/events" for 127.0.0.1 at Tue May 31 11:10:27 -0700 2011
+  Processing by EventsController#create as HTML
+  Parameters: {"commit"=>"Create Event", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "event"=>{"title"=>"fff", "starts_at"=>"05/14/2011", "weight"=>"", "description"=>"ffdasfd", "all_day"=>""}}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "events" ("starts_at", "title", "created_at", "all_day", "updated_at", "description", "ends_at", "rounds", "weight", "user_id") VALUES ('2011-05-14 00:00:00.000000', 'fff', '2011-05-31 18:10:27.402262', 't', '2011-05-31 18:10:27.402262', 'ffdasfd', '2011-05-14 00:00:01.000000', NULL, NULL, 1)
+Redirected to http://localhost:3000/workouts/new?event_id=19&user_id=1
+Completed 302 Found in 207ms
+
+
+Started GET "/workouts/new?event_id=19&user_id=1" for 127.0.0.1 at Tue May 31 11:10:27 -0700 2011
+  Processing by WorkoutsController#new as HTML
+  Parameters: {"event_id"=>"19", "user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mTemplate Load (0.3ms)[0m  SELECT "templates".* FROM "templates" WHERE "templates"."user_id" = 1 ORDER BY name
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_header.html.erb (2.0ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/new.html.erb within layouts/application (23.2ms)
+Completed 200 OK in 116ms (Views: 26.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/workouts" for 127.0.0.1 at Tue May 31 11:10:29 -0700 2011
+  Processing by WorkoutsController#create as HTML
+  Parameters: {"commit"=>"Create Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "workout"=>{"template_id"=>"1", "event_id"=>"19"}}
+  [1m[36mTemplate Load (0.2ms)[0m  [1mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "workouts" ("description", "updated_at", "template_id", "event_id", "entry_id", "created_at", "name") VALUES ('', '2011-05-31 18:10:29.709801', 1, 19, NULL, '2011-05-31 18:10:29.709801', 'Fran')
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 1 AND "exercises".exerciseable_type = 'Template')[0m
+Redirected to http://localhost:3000/workouts/18/edit
+Completed 302 Found in 73ms
+
+
+Started GET "/workouts/18/edit" for 127.0.0.1 at Tue May 31 11:10:29 -0700 2011
+  Processing by WorkoutsController#edit as HTML
+  Parameters: {"id"=>"18"}
+  [1m[35mWorkout Load (0.2ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 18 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 18 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (31.9ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/edit.html.erb within layouts/application (113.6ms)
+Completed 200 OK in 176ms (Views: 116.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/workouts/18" for 127.0.0.1 at Tue May 31 11:10:32 -0700 2011
+  Processing by WorkoutsController#update as HTML
+  Parameters: {"commit"=>"Update Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "id"=>"18"}
+  [1m[36mWorkout Load (0.1ms)[0m  [1mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 18 LIMIT 1[0m
+Redirected to http://localhost:3000/workouts/18
+Completed 302 Found in 16ms
+
+
+Started GET "/workouts/18" for 127.0.0.1 at Tue May 31 11:10:33 -0700 2011
+  Processing by WorkoutsController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[35mWorkout Load (0.3ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 18 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 18 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (77.2ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/show.html.erb within layouts/application (101.7ms)
+Completed 200 OK in 163ms (Views: 104.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/calendar/index" for 127.0.0.1 at Tue May 31 11:10:35 -0700 2011
+  Processing by CalendarController#index as HTML
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Rendered layouts/_header.html.erb (28.0ms)
+Rendered layouts/_footer.html.erb (47.7ms)
+Rendered calendar/index.html.erb within layouts/application (84.1ms)
+Completed 200 OK in 88ms (Views: 87.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events?start=1304233200&end=1307862000&_=1306865436406" for 127.0.0.1 at Tue May 31 11:10:36 -0700 2011
+  Processing by EventsController#index as JSON
+  Parameters: {"end"=>"1307862000", "start"=>"1304233200", "_"=>"1306865436406"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."user_id" = 1[0m
+Completed 200 OK in 121ms (Views: 87.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at Tue May 31 11:10:44 -0700 2011
+  Processing by EventsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered events/_form.html.erb (5.1ms)
+Rendered layouts/_stylesheets.html.erb (1.0ms)
+Rendered layouts/_header.html.erb (1.8ms)
+Rendered layouts/_footer.html.erb (2.0ms)
+Rendered events/new.html.erb within layouts/application (79.1ms)
+Completed 200 OK in 115ms (Views: 82.5ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/events" for 127.0.0.1 at Tue May 31 11:10:59 -0700 2011
+  Processing by EventsController#create as HTML
+  Parameters: {"commit"=>"Create Event", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "event"=>{"title"=>"on the 27th", "starts_at"=>"05/27/2011", "weight"=>"", "description"=>"feaf", "all_day"=>""}}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "events" ("user_id", "weight", "updated_at", "rounds", "title", "created_at", "all_day", "description", "starts_at", "ends_at") VALUES (1, NULL, '2011-05-31 18:10:59.710900', NULL, 'on the 27th', '2011-05-31 18:10:59.710900', 't', 'feaf', '2011-05-27 00:00:00.000000', '2011-05-27 00:00:01.000000')
+Redirected to http://localhost:3000/workouts/new?event_id=20&user_id=1
+Completed 302 Found in 169ms
+
+
+Started GET "/workouts/new?event_id=20&user_id=1" for 127.0.0.1 at Tue May 31 11:10:59 -0700 2011
+  Processing by WorkoutsController#new as HTML
+  Parameters: {"event_id"=>"20", "user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mTemplate Load (0.2ms)[0m  SELECT "templates".* FROM "templates" WHERE "templates"."user_id" = 1 ORDER BY name
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_header.html.erb (2.0ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/new.html.erb within layouts/application (89.3ms)
+Completed 200 OK in 130ms (Views: 92.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/workouts" for 127.0.0.1 at Tue May 31 11:11:01 -0700 2011
+  Processing by WorkoutsController#create as HTML
+  Parameters: {"commit"=>"Create Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "workout"=>{"template_id"=>"1", "event_id"=>"20"}}
+  [1m[36mTemplate Load (0.2ms)[0m  [1mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "workouts" ("event_id", "description", "entry_id", "template_id", "updated_at", "created_at", "name") VALUES (20, '', NULL, 1, '2011-05-31 18:11:02.107912', '2011-05-31 18:11:02.107912', 'Fran')
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 1 AND "exercises".exerciseable_type = 'Template')[0m
+Redirected to http://localhost:3000/workouts/19/edit
+Completed 302 Found in 155ms
+
+
+Started GET "/workouts/19/edit" for 127.0.0.1 at Tue May 31 11:11:02 -0700 2011
+  Processing by WorkoutsController#edit as HTML
+  Parameters: {"id"=>"19"}
+  [1m[35mWorkout Load (0.1ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 19 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 19 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (87.7ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/edit.html.erb within layouts/application (175.3ms)
+Completed 200 OK in 187ms (Views: 178.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/workouts/19" for 127.0.0.1 at Tue May 31 11:11:03 -0700 2011
+  Processing by WorkoutsController#update as HTML
+  Parameters: {"commit"=>"Update Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "id"=>"19"}
+  [1m[36mWorkout Load (0.1ms)[0m  [1mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 19 LIMIT 1[0m
+Redirected to http://localhost:3000/workouts/19
+Completed 302 Found in 71ms
+
+
+Started GET "/workouts/19" for 127.0.0.1 at Tue May 31 11:11:03 -0700 2011
+  Processing by WorkoutsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[35mWorkout Load (0.2ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 19 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 19 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (163.2ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered workouts/show.html.erb within layouts/application (186.9ms)
+Completed 200 OK in 199ms (Views: 189.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/calendar/index" for 127.0.0.1 at Tue May 31 11:11:06 -0700 2011
+  Processing by CalendarController#index as HTML
+Rendered layouts/_stylesheets.html.erb (1.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Rendered layouts/_header.html.erb (83.1ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered calendar/index.html.erb within layouts/application (91.9ms)
+Completed 200 OK in 96ms (Views: 95.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events?start=1304233200&end=1307862000&_=1306865466858" for 127.0.0.1 at Tue May 31 11:11:06 -0700 2011
+  Processing by EventsController#index as JSON
+  Parameters: {"end"=>"1307862000", "start"=>"1304233200", "_"=>"1306865466858"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."user_id" = 1[0m
+Completed 200 OK in 92ms (Views: 13.2ms | ActiveRecord: 0.7ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /home/wjholl/Documents/rails_projects/Safe/config/routes.rb:1)
+
+
+Started GET "/calendar/index" for 127.0.0.1 at Tue May 31 11:12:49 -0700 2011
+  Processing by CalendarController#index as HTML
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (113.1ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered calendar/index.html.erb within layouts/application (122.2ms)
+Completed 200 OK in 126ms (Views: 125.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/events?start=1304233200&end=1307862000&_=1306865571106" for 127.0.0.1 at Tue May 31 11:12:51 -0700 2011
+  Processing by EventsController#index as JSON
+  Parameters: {"end"=>"1307862000", "start"=>"1304233200", "_"=>"1306865571106"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mEvent Load (0.4ms)[0m  SELECT "events".* FROM "events" WHERE "events"."user_id" = 1
+Completed 200 OK in 44ms (Views: 15.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/calendar/index" for 127.0.0.1 at Tue May 31 11:12:51 -0700 2011
+  Processing by CalendarController#index as HTML
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Rendered layouts/_header.html.erb (29.0ms)
+Rendered layouts/_footer.html.erb (0.8ms)
+Rendered calendar/index.html.erb within layouts/application (38.2ms)
+Completed 200 OK in 103ms (Views: 52.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events?start=1304233200&end=1307862000&_=1306865572303" for 127.0.0.1 at Tue May 31 11:12:52 -0700 2011
+  Processing by EventsController#index as JSON
+  Parameters: {"end"=>"1307862000", "start"=>"1304233200", "_"=>"1306865572303"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mEvent Load (0.4ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."user_id" = 1[0m
+Completed 200 OK in 88ms (Views: 60.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at Tue May 31 11:12:52 -0700 2011
+  Processing by EventsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered events/_form.html.erb (6.8ms)
+Rendered layouts/_stylesheets.html.erb (1.0ms)
+Rendered layouts/_header.html.erb (1.8ms)
+Rendered layouts/_footer.html.erb (53.2ms)
+Rendered events/new.html.erb within layouts/application (70.9ms)
+Completed 200 OK in 107ms (Views: 74.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/events" for 127.0.0.1 at Tue May 31 11:13:10 -0700 2011
+  Processing by EventsController#create as HTML
+  Parameters: {"commit"=>"Create Event", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "event"=>{"title"=>"on the 21st", "starts_at"=>"05/21/2011", "weight"=>"", "description"=>"testing on the 21st", "all_day"=>""}}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "events" ("ends_at", "weight", "rounds", "user_id", "starts_at", "created_at", "all_day", "description", "updated_at", "title") VALUES ('2011-05-22 00:00:01.000000', NULL, NULL, 1, '2011-05-21 00:00:00.000000', '2011-05-31 18:13:10.174206', 't', 'testing on the 21st', '2011-05-31 18:13:10.174206', 'on the 21st')
+Redirected to http://localhost:3000/workouts/new?event_id=21&user_id=1
+Completed 302 Found in 170ms
+
+
+Started GET "/workouts/new?event_id=21&user_id=1" for 127.0.0.1 at Tue May 31 11:13:10 -0700 2011
+  Processing by WorkoutsController#new as HTML
+  Parameters: {"event_id"=>"21", "user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mTemplate Load (0.3ms)[0m  SELECT "templates".* FROM "templates" WHERE "templates"."user_id" = 1 ORDER BY name
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+Rendered layouts/_header.html.erb (2.0ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/new.html.erb within layouts/application (83.8ms)
+Completed 200 OK in 127ms (Views: 87.1ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/workouts" for 127.0.0.1 at Tue May 31 11:13:12 -0700 2011
+  Processing by WorkoutsController#create as HTML
+  Parameters: {"commit"=>"Create Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "workout"=>{"template_id"=>"1", "event_id"=>"21"}}
+  [1m[36mTemplate Load (0.2ms)[0m  [1mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "workouts" ("event_id", "description", "template_id", "updated_at", "created_at", "name", "entry_id") VALUES (21, '', 1, '2011-05-31 18:13:12.303738', '2011-05-31 18:13:12.303738', 'Fran', NULL)
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 1 AND "exercises".exerciseable_type = 'Template')[0m
+Redirected to http://localhost:3000/workouts/20/edit
+Completed 302 Found in 137ms
+
+
+Started GET "/workouts/20/edit" for 127.0.0.1 at Tue May 31 11:13:12 -0700 2011
+  Processing by WorkoutsController#edit as HTML
+  Parameters: {"id"=>"20"}
+  [1m[35mWorkout Load (0.1ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 20 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 20 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[35mUser Load (60.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (93.4ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/edit.html.erb within layouts/application (182.7ms)
+Completed 200 OK in 194ms (Views: 125.4ms | ActiveRecord: 60.7ms)
+
+
+Started POST "/workouts/20" for 127.0.0.1 at Tue May 31 11:13:13 -0700 2011
+  Processing by WorkoutsController#update as HTML
+  Parameters: {"commit"=>"Update Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "id"=>"20"}
+  [1m[36mWorkout Load (0.1ms)[0m  [1mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 20 LIMIT 1[0m
+Redirected to http://localhost:3000/workouts/20
+Completed 302 Found in 73ms
+
+
+Started GET "/workouts/20" for 127.0.0.1 at Tue May 31 11:13:14 -0700 2011
+  Processing by WorkoutsController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[35mWorkout Load (0.1ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 20 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 20 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (78.7ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/show.html.erb within layouts/application (179.5ms)
+Completed 200 OK in 191ms (Views: 182.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/calendar/index" for 127.0.0.1 at Tue May 31 11:13:16 -0700 2011
+  Processing by CalendarController#index as HTML
+Rendered layouts/_stylesheets.html.erb (1.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Rendered layouts/_header.html.erb (84.8ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered calendar/index.html.erb within layouts/application (93.4ms)
+Completed 200 OK in 97ms (Views: 96.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events?start=1304233200&end=1307862000&_=1306865597178" for 127.0.0.1 at Tue May 31 11:13:17 -0700 2011
+  Processing by EventsController#index as JSON
+  Parameters: {"end"=>"1307862000", "start"=>"1304233200", "_"=>"1306865597178"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."user_id" = 1[0m
+Completed 200 OK in 93ms (Views: 14.6ms | ActiveRecord: 0.7ms)
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /home/wjholl/Documents/rails_projects/Safe/config/routes.rb:1)
+  [1m[36mEvent Load (0.6ms)[0m  [1mSELECT "events".* FROM "events" ORDER BY events.id DESC LIMIT 1[0m
+DEPRECATION WARNING: You are using the old router DSL which will be removed in Rails 3.1. Please check how to update your routes file at: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/. (called from /home/wjholl/Documents/rails_projects/Safe/config/routes.rb:1)
+
+
+Started GET "/events/new" for 127.0.0.1 at Tue May 31 11:14:40 -0700 2011
+  Processing by EventsController#new as HTML
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered events/_form.html.erb (7.1ms)
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_header.html.erb (1.9ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered events/new.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 142ms (Views: 22.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/events" for 127.0.0.1 at Tue May 31 11:14:56 -0700 2011
+  Processing by EventsController#create as HTML
+  Parameters: {"commit"=>"Create Event", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "event"=>{"title"=>"on the 15th", "starts_at"=>"05/15/2011", "weight"=>"", "description"=>"on the 15th", "all_day"=>""}}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.4ms)[0m  INSERT INTO "events" ("user_id", "created_at", "description", "rounds", "weight", "starts_at", "all_day", "title", "updated_at", "ends_at") VALUES (1, '2011-05-31 18:14:56.365042', 'on the 15th', NULL, NULL, '2011-05-15 00:00:00.000000', 't', 'on the 15th', '2011-05-31 18:14:56.365042', '2011-05-16 01:01:02.000000')
+Redirected to http://localhost:3000/workouts/new?event_id=22&user_id=1
+Completed 302 Found in 190ms
+
+
+Started GET "/workouts/new?event_id=22&user_id=1" for 127.0.0.1 at Tue May 31 11:14:56 -0700 2011
+  Processing by WorkoutsController#new as HTML
+  Parameters: {"event_id"=>"22", "user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mTemplate Load (0.3ms)[0m  SELECT "templates".* FROM "templates" WHERE "templates"."user_id" = 1 ORDER BY name
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_header.html.erb (2.0ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered workouts/new.html.erb within layouts/application (23.2ms)
+Completed 200 OK in 117ms (Views: 26.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/workouts" for 127.0.0.1 at Tue May 31 11:14:58 -0700 2011
+  Processing by WorkoutsController#create as HTML
+  Parameters: {"commit"=>"Create Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "workout"=>{"template_id"=>"1", "event_id"=>"22"}}
+  [1m[36mTemplate Load (0.2ms)[0m  [1mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "workouts" ("name", "updated_at", "entry_id", "event_id", "template_id", "created_at", "description") VALUES ('Fran', '2011-05-31 18:14:58.774198', NULL, 22, 1, '2011-05-31 18:14:58.774198', '')
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 1 AND "exercises".exerciseable_type = 'Template')[0m
+Redirected to http://localhost:3000/workouts/21/edit
+Completed 302 Found in 77ms
+
+
+Started GET "/workouts/21/edit" for 127.0.0.1 at Tue May 31 11:14:58 -0700 2011
+  Processing by WorkoutsController#edit as HTML
+  Parameters: {"id"=>"21"}
+  [1m[35mWorkout Load (0.2ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 21 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 21 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (31.4ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/edit.html.erb within layouts/application (114.2ms)
+Completed 200 OK in 178ms (Views: 117.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/workouts" for 127.0.0.1 at Tue May 31 11:14:59 -0700 2011
+  Processing by WorkoutsController#create as HTML
+  Parameters: {"commit"=>"Create Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "workout"=>{"template_id"=>"1", "event_id"=>"22"}}
+  [1m[36mTemplate Load (0.2ms)[0m  [1mSELECT "templates".* FROM "templates" WHERE "templates"."id" = 1 LIMIT 1[0m
+  [1m[35mAREL (0.2ms)[0m  INSERT INTO "workouts" ("updated_at", "name", "description", "template_id", "entry_id", "created_at", "event_id") VALUES ('2011-05-31 18:14:59.254531', 'Fran', '', 1, NULL, '2011-05-31 18:14:59.254531', 22)
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 1 AND "exercises".exerciseable_type = 'Template')[0m
+Redirected to http://localhost:3000/workouts/22/edit
+Completed 302 Found in 76ms
+
+
+Started GET "/workouts/22/edit" for 127.0.0.1 at Tue May 31 11:14:59 -0700 2011
+  Processing by WorkoutsController#edit as HTML
+  Parameters: {"id"=>"22"}
+  [1m[35mWorkout Load (0.2ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 22 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 22 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (27.8ms)
+Rendered layouts/_footer.html.erb (0.8ms)
+Rendered workouts/edit.html.erb within layouts/application (156.9ms)
+Completed 200 OK in 169ms (Views: 160.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/workouts/22" for 127.0.0.1 at Tue May 31 11:15:01 -0700 2011
+  Processing by WorkoutsController#update as HTML
+  Parameters: {"commit"=>"Update Workout", "authenticity_token"=>"d7WkVPSPzkA5Qwn9Xtli0LTgM80bGmCMlCZZzim5paw=", "utf8"=>"✓", "id"=>"22"}
+  [1m[36mWorkout Load (0.1ms)[0m  [1mSELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 22 LIMIT 1[0m
+Redirected to http://localhost:3000/workouts/22
+Completed 302 Found in 18ms
+
+
+Started GET "/workouts/22" for 127.0.0.1 at Tue May 31 11:15:01 -0700 2011
+  Processing by WorkoutsController#show as HTML
+  Parameters: {"id"=>"22"}
+  [1m[35mWorkout Load (0.2ms)[0m  SELECT "workouts".* FROM "workouts" WHERE "workouts"."id" = 22 LIMIT 1
+  [1m[36mExercise Load (0.2ms)[0m  [1mSELECT "exercises".* FROM "exercises" WHERE ("exercises".exerciseable_id = 22 AND "exercises".exerciseable_type = 'Workout')[0m
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+Rendered layouts/_header.html.erb (78.0ms)
+Rendered layouts/_footer.html.erb (0.9ms)
+Rendered workouts/show.html.erb within layouts/application (102.5ms)
+Completed 200 OK in 195ms (Views: 105.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/calendar/index" for 127.0.0.1 at Tue May 31 11:15:03 -0700 2011
+  Processing by CalendarController#index as HTML
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+Rendered layouts/_header.html.erb (74.2ms)
+Rendered layouts/_footer.html.erb (1.0ms)
+Rendered calendar/index.html.erb within layouts/application (83.5ms)
+Completed 200 OK in 88ms (Views: 87.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/events?start=1304233200&end=1307862000&_=1306865704123" for 127.0.0.1 at Tue May 31 11:15:04 -0700 2011
+  Processing by EventsController#index as JSON
+  Parameters: {"end"=>"1307862000", "start"=>"1304233200", "_"=>"1306865704123"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+  [1m[36mEvent Load (0.5ms)[0m  [1mSELECT "events".* FROM "events" WHERE "events"."user_id" = 1[0m
+Completed 200 OK in 94ms (Views: 67.3ms | ActiveRecord: 0.7ms)

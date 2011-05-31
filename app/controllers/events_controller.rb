@@ -49,7 +49,8 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
     @event.user_id = current_user.id   
     @start_date = @event.starts_at
-    @end_date = DateTime.civil(@start_date.year, @start_date.month, @start_date.day, 0, 0, 1)
+    @start_date = DateTime.civil(@start_date.year, @start_date.month, @start_date.day + 1, 1, 1, 1)
+    @end_date = DateTime.civil(@start_date.year, @start_date.month, @start_date.day, 1, 1, 2)
     @event.ends_at = @end_date
     @event.all_day = true
     respond_to do |format|
