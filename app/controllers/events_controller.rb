@@ -47,7 +47,11 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
-    @event.user_id = current_user.id
+    @event.user_id = current_user.id   
+    @start_date = @event.starts_at
+    @end_date = DateTime.civil(@start_date.year, @start_date.month, @start_date.day, 0, 0, 1)
+    @event.ends_at = @end_date
+    @event.all_day = true
     respond_to do |format|
       if @event.save
         format.html { redirect_to(new_workout_path(:user_id => @current_user.id, :event_id => @event.id ), :notice => 'Pick the workout template.') }
